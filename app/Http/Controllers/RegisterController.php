@@ -9,21 +9,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
-    public function validate($req) {
-
-        $validationData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        return $validationData;
-
-    }
-    
     public function storeStudent($user_id, $grade) {
 
         $student = new Student;
@@ -58,11 +47,22 @@ class RegisterController extends Controller
 
     }
 
-    public function registerStudent(Request $req) {
+    public function registerStudent(RegisterRequest $req) {
 
-        $this->validate($req);
+        $validated = $req->validated();
+        $user_id = $this->storeUser($req);
+        $this->storeStudent($user_id, $req->grade);
 
-        $user_id = $this->createUser($req);
+        return redirect()->route('home');
+        
+    }
+
+    public function registerTeacher(RegisterRequest $req) {
+
+        $validated = $req->validated();
+        $user_id = $this->storeUser($req);
+        $user = User::find($user_id);
+        $user->role = 9;
         $this->storeStudent($user_id, $req->grade);
 
         return redirect()->route('home');

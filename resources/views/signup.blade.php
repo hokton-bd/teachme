@@ -18,6 +18,9 @@
             @error('email')
                   <strong class="text-danger">このメールアドレスはすでに使われています</strong>
             @enderror
+            @error('password')
+              <strong class="text-danger">パスワードは6文字以上です</strong>
+            @enderror
           </div>
         </div>
       </div>
@@ -56,6 +59,7 @@
     <input type="text" name="name" placeholder="お名前（ニックネーム可）" class="form-control mb-2" required>
     <input type="email" name="email" placeholder="メールアドレス" class="form-control mb-2" required>
     <input type="password" name="password" placeholder="パスワード" class="form-control mb-2" required>
+    
     <select name="grade" id="" class="form-control mb-4" required>
         <option value="1">中学1年生</option>
         <option value="2">中学2年生</option>

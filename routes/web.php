@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('signup', 'SubjectController@show');
 
+Route::post('signup.student', 'RegisterController@registerStudent');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
