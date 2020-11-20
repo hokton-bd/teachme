@@ -50,7 +50,7 @@
 
 <h3 class="text-center">生徒として登録</h3>
 
-<form action="signup/student" method="post" class="register-form">
+<form action="signup.student" method="post" class="register-form">
   @csrf
     <input type="hidden" name="status" value="S">
     <input type="text" name="name" placeholder="お名前（ニックネーム可）" class="form-control mb-2" required>
@@ -76,7 +76,7 @@
 
 <h3 class="text-center">先生として登録</h3>
 
-<form action="signup/teacher" method="post" class="register-form">
+<form action="signup.teacher" method="post" class="register-form">
   @csrf
     <input type="hidden" name="status" value="T">
     <input type="text" name="name" placeholder="名前（ニックネーム可）" class="form-control mb-2" required>

@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+Route::get('signup', 'SubjectController@show');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
