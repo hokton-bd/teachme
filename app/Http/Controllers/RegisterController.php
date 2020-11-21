@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
+use App\Common\UserClass;
 
 class RegisterController extends Controller
 {
@@ -34,23 +35,11 @@ class RegisterController extends Controller
 
     }
 
-    public function storeUser($req) {
-
-        $user = new User;
-        $user->name = $req->name;
-        $user->email = $req->email;
-        $user->password = Hash::make($req->password);
-
-        $user->save();
-
-        return $user->id;
-
-    }
 
     public function registerStudent(RegisterRequest $req) {
 
         $validated = $req->validated();
-        $user_id = $this->storeUser($req);
+        $user_id = UserClass::store($req);
         $this->storeStudent($user_id, $req->grade);
 
         return redirect()->route('home');

@@ -40,7 +40,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "classmap": [
-            "app/common"
+            "app/Common"
         ]
     },
     "autoload-dev": {
