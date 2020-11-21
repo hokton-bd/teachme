@@ -227,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'UserClass' =>app\Common\UserClass::class,
+        'SessionClass' => app\Common\SessionClass::class,
     ],
 
 ];
