@@ -63,7 +63,7 @@ class RegisterController extends Controller
         $user_id = $this->storeUser($req);
         $user = User::find($user_id);
         $user->role = 9;
-        $this->storeStudent($user_id, $req->grade);
+        $this->storeTeacher($user_id, $req->grade, $req->subject);
 
         return redirect()->route('home');
         
