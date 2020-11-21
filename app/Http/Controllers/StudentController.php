@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Common\UserClass;
+use App\Common\SessionClass;
 use App\Models\Student;
 use App\Models\User;
 
@@ -26,6 +27,9 @@ class StudentController extends Controller
         $validated = $req->validated();
         $user_id = UserClass::store($req);
         $this->store($user_id, $req->grade);
+
+        SessionClass::store($user_id);
+
 
         return redirect()->route('home');
         

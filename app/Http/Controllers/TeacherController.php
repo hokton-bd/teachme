@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Common\UserClass;
+use App\Common\SessionClass;
 
 class TeacherController extends Controller
 {
@@ -31,6 +32,7 @@ class TeacherController extends Controller
         $user = User::find($user_id);
         $user->role = 9;
         $this->store($user_id, $req->grade, $req->subject);
+        SessionClass::store($user_id);
 
         return redirect()->route('home');
         
