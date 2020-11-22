@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Common\SessionClass;
+use App\Common\UserClass;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
             
             if($user->role == 9) {
 
-                return redirect()->route('teacher.dashboard');
+                return redirect('teacher/dashboard');
                 // echo 'success';
 
             } else if($user->role == 10) {
