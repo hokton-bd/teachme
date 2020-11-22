@@ -40,7 +40,7 @@
 <!-- end header -->
 <div class="login-modal modal-block">
   <div class="modal-bg"></div>
-  <form method="post" action="user/login" class="login-modal-content">
+  <form method="post" action="{{route('login')}}" class="login-modal-content">
     @csrf
     <span class="modal-closer"><i class="fas fa-times"></i></span>
     <input type="email" name="email" placeholder="メールアドレス" class="form-control mb-2">

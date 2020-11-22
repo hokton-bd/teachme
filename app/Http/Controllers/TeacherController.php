@@ -34,7 +34,7 @@ class TeacherController extends Controller
         $this->store($user_id, $req->grade, $req->subject);
         SessionClass::store($user_id);
 
-        return redirect()->route('home');
+        return redirect()->route('teacher.dashboard');
         
     }
 
