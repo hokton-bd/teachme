@@ -15,5 +15,11 @@ class Student extends Model
 
     }
 
+    public function lectures() {
+
+        return $this->hasMany('App\Models\Lectures');
+
+    }
+
 
 }

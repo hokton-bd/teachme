@@ -21,6 +21,11 @@ class Teacher extends Model
 
         return $this->hasOne('App\Models\Subject');
 
+    }
+
+    public function lectures() {
+
+        return $this->hasMany('App\Models\Lectures');
 
     }
 
