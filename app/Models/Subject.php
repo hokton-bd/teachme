@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+
+    public function teacher() {
+
+        return $this->belognsTo('App\Models\Teacher');
+
+    }
+
+
 }

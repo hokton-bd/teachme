@@ -30,7 +30,6 @@ class StudentController extends Controller
 
         SessionClass::store($user_id);
 
-
         return redirect()->route('home');
         
     }
