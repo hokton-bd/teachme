@@ -19,7 +19,7 @@
                 <li> <a class="" href="">スケジュール</a></li>
                 <li> <a href="">プロフィール</a></li>
                 <li> <a href="">お問い合わせ</a></li>
-                <li> <a href="" id="nav-login-btn" class="login-btn bg-primary header-login">ログアウト</a></li>
+                <li> <a href="{{route('logout')}}" id="nav-login-btn" class="login-btn bg-primary header-login">ログアウト</a></li>
               </ul>
 
 

@@ -27,7 +27,7 @@ class UserController extends Controller
 
             } else if($user->role == 10) {
 
-                // return redirect()->route('student.dashboard');
+                return redirect('student/dashboard');
 
             } else {
 
@@ -36,6 +36,15 @@ class UserController extends Controller
             }
 
         }
+
+    }
+
+    public function logout() {
+
+        session()->flush();
+        var_dump(session('user_id'));
+
+        return redirect('/');
 
     }
 

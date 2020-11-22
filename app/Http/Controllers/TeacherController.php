@@ -52,8 +52,6 @@ class TeacherController extends Controller
 
         $coming_lectures = $this->getComingLectures();
         $user = User::find(session('user_id'));
-        // var_dump($name);
-        // return view('teacher.dashboard', ['coming_lectures' => $coming_lectures, 'user' => $user]);
         return view('teacher.dashboard', compact('coming_lectures', 'user'));
 
     }
