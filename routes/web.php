@@ -23,7 +23,7 @@ Route::post('signup.student', 'StudentController@register');
 
 Route::post('signup.teacher', 'TeacherController@register');
 
-Route::get('teacher/dashboard', 'LecturesController@getTeacherComingLectures')->name('teacher.dashboard');
+Route::get('teacher/dashboard', 'TeacherController@displayDashboard')->name('teacher.dashboard');
 
 Route::post('login', 'UserController@login')->name('login');
 

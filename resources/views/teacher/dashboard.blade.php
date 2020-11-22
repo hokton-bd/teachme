@@ -2,11 +2,8 @@
 @include('layouts.head')
 @include('layouts.footer')
 @section('content')
-
-@component('components.teacher_navbar')
-@endcomponent
-@component('components.inner_head')
-@endcomponent
+@include('components.teacher_navbar')
+@include('components.inner_head')
 <!-- section -->
 <div class="section padding_layout_1" id="register">
   <div class="container">

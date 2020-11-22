@@ -38,5 +38,25 @@ class TeacherController extends Controller
         
     }
 
+    public function getComingLectures() {
+
+        $user_id = session('user_id');
+        $teacher_id = User::find($user_id)->teacher()->value('id');
+        $coming_lectures = Teacher::find($teacher_id)->lectures()->where('date', '>=', date('Y-m-d'))->get();
+        
+        return $coming_lectures;
+
+    }
+
+    public function displayDashboard() {
+
+        $coming_lectures = $this->getComingLectures();
+        $user = User::find(session('user_id'));
+        // var_dump($name);
+        // return view('teacher.dashboard', ['coming_lectures' => $coming_lectures, 'user' => $user]);
+        return view('teacher.dashboard', compact('coming_lectures', 'user'));
+
+    }
+
 
 }
