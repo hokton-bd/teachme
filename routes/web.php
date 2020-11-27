@@ -31,9 +31,9 @@ Route::post('login', 'UserController@login')->name('login');
 
 Route::get('logout', 'UserController@logout')->name('logout');
 
-Route::get('teacher/schedule', 'LecturesController@getSchedule')->name('teacher.schedule');
+Route::get('teacher/schedule', 'TeacherController@viewSchedule')->name('teacher.schedule');
 
-Route::post('teacher/schedule', 'LecturesController@add_shift')->name('add_shift');
+Route::post('teacher/schedule', 'TeacherController@add_shift')->name('add_shift');
 
 // Auth::routes();
 
