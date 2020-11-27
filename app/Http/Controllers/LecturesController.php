@@ -29,7 +29,12 @@ class LecturesController extends Controller
 
         $message = '追加されました';
 
-        return view('teacher.schedule', compact('message'));
+        $shifts = Lectures::where('teacher_id', '=', session('teacher_id'))
+                            ->where('date', '>=', date('Y-m-d'))
+                            ->orderBy('date', 'ASC')
+                            ->get();
+
+        return view('teacher.schedule', compact('message', 'shifts'));
 
     }
 

@@ -33,7 +33,8 @@ class TeacherController extends Controller
         $user->role = 9;
         $user->save();
         $this->store($user_id, $req->grade, $req->subject);
-        session(['user_id' => $user->id, 'role' => $user->role, 'teahcer_id' => User::find($user->id)->teacher()->value('id')]);
+        $teacher_id = User::find($user->id)->teacher()->value('id');
+        session(['user_id' => $user->id, 'role' => $user->role, 'teacher_id' => $teacher_id]);
 
         return redirect()->route('teacher.dashboard');
         

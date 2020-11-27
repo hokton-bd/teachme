@@ -33,7 +33,7 @@ Route::get('logout', 'UserController@logout')->name('logout');
 
 Route::get('teacher/schedule', 'LecturesController@getSchedule')->name('teacher.schedule');
 
-Route::post('teacher.schedule', 'LecturesController@add_shift')->name('add_shift');
+Route::post('teacher/schedule', 'LecturesController@add_shift')->name('add_shift');
 
 // Auth::routes();
 
