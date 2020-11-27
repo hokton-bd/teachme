@@ -7,7 +7,7 @@
           <div class="title-holder">
             <div class="title-holder-cell text-left">
               
-                <h1 class="page-title">{{ $user->name }}さん</h1>
+                <h1 class="page-title">{{ session('name') }}さん</h1>
               
             </div>
           </div>

@@ -27,8 +27,9 @@ class StudentController extends Controller
         $validated = $req->validated();
         $user_id = UserClass::store($req);
         $this->store($user_id, $req->grade);
+        $user = User::find($user_id);
 
-        SessionClass::store($user_id);
+        session(['user_id' => $user->id, 'role' => $user->role, 'student_id' => User::find($user->id)->student()->value('id')]);
 
         return redirect()->route('home');
         
@@ -47,7 +48,7 @@ class StudentController extends Controller
 
         $user_id = session('user_id');
         $student_id = User::find($user_id)->student()->value('id');
-        $coming_lectures = Student::find($student_id)->lectures()->where('date', '>=', date('Y-m-d'))->get();
+        $coming_lectures = Student::find($student_id)->lectures()->where('date', '>=', date('Y-m-d'))->orderBy('date', 'ASC')->get();
         
         return $coming_lectures;
 

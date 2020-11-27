@@ -31,8 +31,9 @@ class TeacherController extends Controller
         $user_id = UserClass::store($req);
         $user = User::find($user_id);
         $user->role = 9;
+        $user->save();
         $this->store($user_id, $req->grade, $req->subject);
-        SessionClass::store($user_id);
+        session(['user_id' => $user->id, 'role' => $user->role, 'teahcer_id' => User::find($user->id)->teacher()->value('id')]);
 
         return redirect()->route('teacher.dashboard');
         
@@ -42,15 +43,19 @@ class TeacherController extends Controller
 
         $user_id = session('user_id');
         $teacher_id = User::find($user_id)->teacher()->value('id');
-        $coming_lectures = Teacher::find($teacher_id)->lectures()->where('date', '>=', date('Y-m-d'))->get();
-        
-        return $coming_lectures;
+
+        return $coming_lectures = Teacher::find($teacher_id)->lectures()
+                                        ->where('date', '>=', date('Y-m-d'))
+                                        ->where('student_id', '!=', 'null')
+                                        ->orderBy('date', 'ASC')
+                                        ->get();
 
     }
 
     public function displayDashboard() {
 
         $coming_lectures = $this->getComingLectures();
+
         $user = User::find(session('user_id'));
         return view('teacher.dashboard', compact('coming_lectures', 'user'));
 

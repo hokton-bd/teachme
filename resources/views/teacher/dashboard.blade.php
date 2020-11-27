@@ -22,15 +22,21 @@
       <h5>次の授業</h5>
       <ul class="horizontal-list">
 
+        @if($coming_lectures->count() != 0)
         @foreach($coming_lectures as $item)
           <li class="horizontal-item">
             <div class="item-contents">
               <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>日:<?= substr($item->date, 5);?></p>
-              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>時間: {{$item->start_time}}:00 - {{$item->end_time}}:00 </p>
+              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>時間: <?= substr($item->start_time, 0, 5); ?> - <?= substr($item->end_time, 0, 5)?></p>
               <p class="item-text text-white"><i class="fas fa-user mr-1 fa-fw"></i>生徒: {{$item->name}}</p>
             </div>
           </li>
         @endforeach
+        @else
+
+          <p>授業は予約されていません</p>
+
+        @endif
 
       </ul>
     </div><!-- /coming-classes -->

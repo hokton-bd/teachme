@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Common\SessionClass;
 use App\Common\UserClass;
 
+
 class UserController extends Controller
 {
     
@@ -19,16 +20,17 @@ class UserController extends Controller
             
             $user = User::where('email', '=', $req->email)->first();
             SessionClass::store($user->id);
-            session(['role' => $user->role]);
+            session(['role' => $user->role, 'name' => $user->name]);
             
             if($user->role == 9) {
-                
+
+                session(['teacher_id' => User::find($user->id)->teacher()->value('id')]);
                 return redirect('teacher/dashboard');
                 // echo 'success';
 
             } else if($user->role == 10) {
 
-                echo 'success';
+                session(['teacher_id' => User::find($user->id)->student()->value('id')]);
                 return redirect('student/dashboard');
 
             } else {

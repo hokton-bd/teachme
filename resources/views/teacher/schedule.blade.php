@@ -2,11 +2,8 @@
 @include('layouts.head')
 @include('layouts.footer')
 @section('content')
-
-@component('components.teacher_navbar')
-@endcomponent
-@component('components.inner_head')
-@endcomponent
+@include('components.teacher_navbar')
+@include('components.inner_head')
 <!-- section -->
 <div class="section padding_layout_1" id="register">
   <div class="container">
@@ -20,6 +17,10 @@
         </div>
       </div>
     </div><!-- /row -->
+
+    @isset($message)
+    <p> {{$message}} </p>
+    @endisset
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg px-2 d-block mx-auto" data-toggle="modal" data-target="#modelId">
@@ -36,17 +37,17 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-                <form method="post" action="{{route('shift.add')}}">
+                <form method="post" action="{{route('add_shift')}}">
                 @csrf
                     <div class="modal-body">
-                            <input type="date" name="date" class="form-control mb-2" placeholder="" min="<?= date('Y-m-d'); ?>">
+                            <input type="date" name="date" class="form-control mb-2" placeholder="" min="<?= date('Y-m-d'); ?>" required>
                             <div class="row px-3">
-                                <select name="start_time" id="" class="form-control w-50 d-inline-block">
-                                    @for($i = 9; $i < 19; $i ++)
+                                <select name="start_time" id="" class="form-control w-50 d-inline-block" reqiured>
+                                    @for($i = 9; $i < 21; $i ++)
                                         <option value="{{ $i }}">{{ $i }}:00</option>
                                     @endfor
                                 </select>
-                                ～  1時間
+                                ～  40分
                             </div>                            
                     </div><!-- body -->
                     <div class="modal-footer">
@@ -59,44 +60,27 @@
     </div>
 
     <div class="coming-classes my-5">
-      <h5>予約した授業</h5>
+      <h5>予定</h5>
+      @isset($shifts)
+      @if($shifts->count() != 0)
+
       <ul class="horizontal-list">
+      @foreach($shifts as $item)
         <li class="horizontal-item">
           <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>英語</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>9月2日15：00～</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-fw"></i>鈴木松雄</p>
-          </div>
+              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>日:<?= substr($item->date, 5);?></p>
+              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>時間: <?= substr($item->start_time, 0, 5); ?> - <?= substr($item->end_time, 0, 5)?></p>
+              <p class="item-text text-white"><i class="fas fa-user mr-1 fa-fw"></i>生徒: {{$item->name}}</p>
+            </div>
         </li>
-        <li class="horizontal-item">
-        <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-superscript mr-1 fa-fw"></i>数学</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>9月2日15：00～</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-faw"></i>鈴木松雄</p>
-          </div>
-        </li>
-        <li class="horizontal-item">
-        <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-flask mr-1 fa-fw"></i>化学</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>9月2日15：00～</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-faw"></i>鈴木松雄</p>
-          </div>
-        </li>
-        <li class="horizontal-item">
-        <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-history mr-1 fa-fw"></i>歴史</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>9月2日15：00～</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-faw"></i>鈴木松雄</p>
-          </div>
-        </li>
-        <li class="horizontal-item">
-        <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-book mr-1 fa-faw"></i>国語</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>9月2日15：00～</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-faw"></i>鈴木松雄</p>
-          </div>
-        </li>
+      @endforeach
       </ul>
+
+      @else
+        <p>予定がありません！  追加してください！</p>
+      @endif
+      @endisset
+
     </div><!-- /coming-classes -->
 
 
