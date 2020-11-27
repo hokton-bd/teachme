@@ -9,8 +9,6 @@
               
                 <h1 class="page-title">{{ $user->name }}さん</h1>
               
-                
-              
             </div>
           </div>
         </div>

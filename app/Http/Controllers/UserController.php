@@ -19,22 +19,24 @@ class UserController extends Controller
             
             $user = User::where('email', '=', $req->email)->first();
             SessionClass::store($user->id);
+            session(['role' => $user->role]);
             
             if($user->role == 9) {
-
+                
                 return redirect('teacher/dashboard');
                 // echo 'success';
 
             } else if($user->role == 10) {
 
+                echo 'success';
                 return redirect('student/dashboard');
 
             } else {
-
-
-
+                echo 'failed';
             }
 
+        } else {
+            echo 'test';
         }
 
     }
@@ -42,7 +44,6 @@ class UserController extends Controller
     public function logout() {
 
         session()->flush();
-        var_dump(session('user_id'));
 
         return redirect('/');
 

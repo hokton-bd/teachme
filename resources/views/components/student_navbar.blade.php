@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
           <!-- logo start -->
-          <div class="logo"> <a href="{{ route('student/dashboard') }}"><img src="{{ asset('images/logos/logo.png') }}" alt="logo" /></a> </div>
+          <div class="logo"> <a href="{{ route('student.dashboard') }}"><img src="{{ asset('images/logos/logo.png') }}" alt="logo" /></a> </div>
           <!-- logo end -->
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -15,10 +15,10 @@
           <div class="menu_side">
             <div id="navbar_menu">
               <ul class="first-ul">
-                <li> <a class="" href="{{ route('student/dashboard') }}">ホーム</a></li>
-                <li> <a class="" href="{{route('classes/reserve')}}">授業を予約</a></li>
-                <li> <a href="{{route('student.profile')}}">プロフィール</a></li>
-                <li> <a href="contact">お問い合わせ</a></li>
+                <li> <a class="" href="{{ route('student.dashboard') }}">ホーム</a></li>
+                <li> <a class="" href="">授業を予約</a></li>
+                <li> <a href="">プロフィール</a></li>
+                <li> <a href="">お問い合わせ</a></li>
                 <li> <a href="{{ route('logout') }}" id="nav-login-btn" class="login-btn bg-primary header-login">ログアウト</a></li>
               </ul>
 

@@ -25,7 +25,7 @@ Route::post('signup.teacher', 'TeacherController@register');
 
 Route::get('teacher/dashboard', 'TeacherController@displayDashboard')->name('teacher.dashboard');
 
-Route::get('student/dashboard', 'StudentController@dipslayDashboard')->name('student.dashboard');
+Route::get('student/dashboard', 'StudentController@displayDashboard')->name('student.dashboard');
 
 Route::post('login', 'UserController@login')->name('login');
 

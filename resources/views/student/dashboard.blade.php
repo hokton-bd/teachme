@@ -3,10 +3,8 @@
 @include('layouts.footer')
 @section('content')
 
-@component('components.student_navbar')
-@endcomponent
-@component('components.inner_head')
-@endcomponent
+@include('components.student_navbar')
+@include('components.inner_head')
 <!-- section -->
 <div class="section padding_layout_1" id="register">
   <div class="container">
@@ -25,7 +23,7 @@
       <h5>予約した授業</h5>
       <ul class="horizontal-list">
 
-        @foreach($lectures as $item)
+        @foreach($coming_lectures as $item)
         <a href="classes/detail/{{ $item->id }}" class="horizontal-item">
           <div class="item-contents">
             <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$item->subject_name}}</p>
