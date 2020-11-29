@@ -3,10 +3,8 @@
 @include('layouts.footer')
 @section('content')
 
-@component('components.student_navbar')
-@endcomponent
-@component('components.inner_head')
-@endcomponent
+@include('components.student_navbar')
+@include('components.inner_head')
 <!-- section -->
 <div class="section padding_layout_1" id="register">
 <div class="container">
@@ -25,15 +23,18 @@
 
     <ul class="horizontal-list">
         
-        @foreach($available_teachers as $teacher)
-        <a href="paycheck/{{ $teacher->id }}" class="horizontal-item">
+        @for($i = 0; $i < $av_lectures->count(); $i++)
+        
+        <a href="" class="horizontal-item">
           <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$teacher->subject_name}}</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>{{$teacher->date}}</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-fw"></i>{{$teacher->name}}</p>
+            <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$names[$i]['subject_name']}}</p>
+            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>{{$av_lectures[$i]->date}}</p>
+            <p class="item-text text-white"><i class="far fa-clock mr-1 fa-fw"></i><?= substr($av_lectures[$i]->start_time, 0, 5) ?> - <?= substr($av_lectures[$i]->end_time, 0, 5); ?></p>
+            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-fw"></i>{{$names[$i]['teacher_name']}}</p>
           </div>
         </a>
-        @endforeach
+        
+        @endfor
 
       </ul>
 
