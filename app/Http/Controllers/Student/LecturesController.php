@@ -55,5 +55,22 @@ class LecturesController extends Controller
 
     }
 
+    public function reserve($id) {
+
+        $lecture = Lectures::find($id);
+
+        $teacher_name = $this->getTeacherName($lecture->teacher_id);
+        $subject_name = $this->getSubjectName($lecture->subject_id);
+
+        return view('student.paycheck', compact('lecture', 'teacher_name', 'subject_name'));
+
+    }
+
+    public function charge($id) {
+
+        echo 'success';
+
+    }
+
 
 }

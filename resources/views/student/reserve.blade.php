@@ -25,7 +25,7 @@
         
         @for($i = 0; $i < $av_lectures->count(); $i++)
         
-        <a href="" class="horizontal-item">
+        <a href="{{route('student.paycheck', $av_lectures[$i]->id)}}" class="horizontal-item">
           <div class="item-contents">
             <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$names[$i]['subject_name']}}</p>
             <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>{{$av_lectures[$i]->date}}</p>

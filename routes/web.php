@@ -37,6 +37,10 @@ Route::post('teacher/schedule', 'Teacher\LectureController@add_shift')->name('ad
 
 Route::get('student/reserve', 'Student\LecturesController@getAvailableLectures')->name('student.reserve');
 
+Route::get('student/reserve/paycheck/{id}', 'Student\LecturesController@reserve')->name('student.paycheck');
+
+Route::post('student/reserve/charge/{id}', 'Student\LecturesController@charge')->name('student.charge');
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
