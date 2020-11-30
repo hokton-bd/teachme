@@ -15,7 +15,6 @@ class LecturesController extends Controller
     public function getAvailableLectures() {
 
         $av_lectures = Lectures::where('date', '>=', date('Y-m-d'))
-                               ->where('start_time', '>', date('H:i:s'))
                                ->where('status', 0)
                                ->orderBy('date', 'ASC')
                                ->orderBy('start_time', 'ASC')
@@ -24,20 +23,16 @@ class LecturesController extends Controller
         $names = [];
            
         for($i = 0; $i < $av_lectures->count(); $i ++) {
-
-            foreach($av_lectures as $item) {
                 
-                $teacher_name = $this->getTeacherName($item->teacher_id);
-                $subject_name = $this->getSubjectName($item->subject_id);
+            $teacher_name = $this->getTeacherName($av_lectures[$i]->teacher_id);
+            $subject_name = $this->getSubjectName($av_lectures[$i]->subject_id);
 
+            $tmp2 = ['teacher_name' => $teacher_name, 'subject_name' => $subject_name];
 
-                $tmp2 = ['teacher_name' => $teacher_name, 'subject_name' => $subject_name];
-
-                $names[$i] = $tmp2;
-                
-            }
+            $names[$i] = $tmp2;    
             
         }
+
 
         return view('student.reserve', compact('av_lectures', 'names'));
 
@@ -54,9 +49,9 @@ class LecturesController extends Controller
 
     public function getSubjectName($subject_id) {
 
-        $name = Subject::find($subject_id)->value('subject_name');
+        $subject = Subject::find($subject_id);
 
-        return $name;
+        return $subject->subject_name;
 
     }
 

@@ -37,8 +37,12 @@ class UserController extends Controller
                 echo 'failed';
             }
 
-        } else {
-            echo 'test';
+        } else {//enter wrong email or password
+            
+            $message = 'メールアドレスもしくはパスワードが間違っています';
+            
+            return redirect('/')->with('message');
+
         }
 
     }

@@ -43,6 +43,9 @@
   <form method="post" action="{{route('login')}}" class="login-modal-content">
     @csrf
     <span class="modal-closer"><i class="fas fa-times"></i></span>
+    @isset($message)
+      <p>{{$message}}</p>
+    @endisset
     <input type="email" name="email" placeholder="メールアドレス" class="form-control mb-2">
     <input type="password" name="password" placeholder="パスワード" class="form-control mb-3">
 
