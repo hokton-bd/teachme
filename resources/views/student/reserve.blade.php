@@ -21,6 +21,7 @@
 
     <div id="ad_teachers" class="available_teachers">
 
+
     <ul class="horizontal-list">
         
         @for($i = 0; $i < $av_lectures->count(); $i++)

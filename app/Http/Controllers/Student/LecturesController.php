@@ -55,7 +55,7 @@ class LecturesController extends Controller
 
     }
 
-    public function reserve($id) {
+    public function paycheck($id) {
 
         $lecture = Lectures::find($id);
 
@@ -66,9 +66,21 @@ class LecturesController extends Controller
 
     }
 
-    public function charge($id) {
+    public function reserve($id) {
 
-        echo 'success';
+        $lecture = Lectures::find($id);
+
+        $lecture->status = 1;
+        $lecture->student_id = User::find(session('user_id'))->student()->value('id');
+        $lecture->updated_at = time();
+
+        $lecture->save();
+
+        $message = 'success';
+
+        session()->flash($message);
+
+        return redirect('student/reserve');
 
     }
 
