@@ -21,6 +21,9 @@
 
     <div id="ad_teachers" class="available_teachers">
 
+    @if(session('message'))
+    <p>{{session('message')}}</p>
+    @endif
 
     <ul class="horizontal-list">
         

@@ -76,11 +76,9 @@ class LecturesController extends Controller
 
         $lecture->save();
 
-        $message = 'success';
+        $message = '授業が予約されました';
 
-        session()->flash($message);
-
-        return redirect('student/reserve');
+        return redirect('student/reserve')->with('message', $message);
 
     }
 
