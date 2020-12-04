@@ -228,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'UserClass' =>app\Common\UserClass::class,
         'SessionClass' => app\Common\SessionClass::class,
+        'LectureClass' => app\Common\LectureClass::class,
     ],
 
 ];

@@ -23,15 +23,15 @@
       <h5>予約した授業</h5>
       <ul class="horizontal-list">
 
-        @foreach($coming_lectures as $item)
-        <a href="classes/detail/{{ $item->id }}" class="horizontal-item">
+        @for($i = 0; $i < $lectures->count(); $i++)
+        <a href="classes/detail/{{ $lectures[$i]->id }}" class="horizontal-item">
           <div class="item-contents">
-            <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$item->subject_name}}</p>
-            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i><?= substr($item->date, 5); ?> {{$item->start_time}}:00-{{$item->end_time}}:00</p>
-            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-fw"></i>{{$item->name}}</p>
+            <p class="item-text text-white"><i class="fas fa-flag-usa mr-1 fa-fw"></i>{{$names[$i]['subject_name']}}</p>
+            <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i><?= substr($lectures[$i]->date, 5); ?> <?= substr($lectures[$i]->start_time, 0, 5)?> - <?= substr($lectures[$i]->end_time, 0, 5) ?></p>
+            <p class="item-text text-white"><i class="fas fa-chalkboard-teacher mr-1 fa-fw"></i>{{$names[$i]['teacher_name']}}</p>
           </div>
         </a>
-        @endforeach
+        @endfor
 
       </ul>
     </div><!-- /coming-classes -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Common\LectureClass;
 use App\Models\Lectures;
 use App\Models\User;
 use App\Models\Teacher;
@@ -24,8 +25,8 @@ class LecturesController extends Controller
            
         for($i = 0; $i < $av_lectures->count(); $i ++) {
                 
-            $teacher_name = $this->getTeacherName($av_lectures[$i]->teacher_id);
-            $subject_name = $this->getSubjectName($av_lectures[$i]->subject_id);
+            $teacher_name = LectureClass::getTeacherName($av_lectures[$i]->teacher_id);
+            $subject_name = LectureClass::getSubjectName($av_lectures[$i]->subject_id);
 
             $tmp2 = ['teacher_name' => $teacher_name, 'subject_name' => $subject_name];
 
@@ -39,28 +40,14 @@ class LecturesController extends Controller
     }
 
 
-    public function getTeacherName($teacher_id) {
 
-        $name = Teacher::find($teacher_id)->user()->value('name');
-
-        return $name;
-
-    }
-
-    public function getSubjectName($subject_id) {
-
-        $subject = Subject::find($subject_id);
-
-        return $subject->subject_name;
-
-    }
 
     public function paycheck($id) {
 
         $lecture = Lectures::find($id);
 
-        $teacher_name = $this->getTeacherName($lecture->teacher_id);
-        $subject_name = $this->getSubjectName($lecture->subject_id);
+        $teacher_name = LectureClass::getTeacherName($lecture->teacher_id);
+        $subject_name = LectureClass::getSubjectName($lecture->subject_id);
 
         return view('student.paycheck', compact('lecture', 'teacher_name', 'subject_name'));
 

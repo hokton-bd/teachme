@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Common\UserClass;
 use App\Common\SessionClass;
+use App\Common\LectureClass;
 use App\Models\Student;
 use App\Models\User;
 
@@ -37,10 +38,24 @@ class StudentController extends Controller
 
     public function displayDashboard() {
 
-        $coming_lectures = $this->getComingLectures();
+        $lectures = $this->getComingLectures();
+
+        $names = [];
+
+        for($i = 0; $i < $lectures->count(); $i++) {
+
+            $teacher_name = LectureClass::getTeacherName($lectures[$i]->teacher_id);
+            $subject_name = LectureClass::getSubjectName($lectures[$i]->subject_id);
+
+            $array = ['teacher_name' => $teacher_name, 'subject_name' => $subject_name];
+
+            $names[$i] = $array;
+
+        }
+        
         $user = User::find(session('user_id'));
         
-        return view('student.dashboard', compact('coming_lectures', 'user'));
+        return view('student.dashboard', compact('lectures', 'user', 'names'));
 
     }
 
