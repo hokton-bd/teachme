@@ -23,15 +23,15 @@
       <ul class="horizontal-list">
 
         @if($coming_lectures->count() != 0)
-        @foreach($coming_lectures as $item)
+        @for($i = 0; $i < $coming_lectures->count(); $i++)
           <li class="horizontal-item">
             <div class="item-contents">
-              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>日:<?= substr($item->date, 5);?></p>
-              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>時間: <?= substr($item->start_time, 0, 5); ?> - <?= substr($item->end_time, 0, 5)?></p>
-              <p class="item-text text-white"><i class="fas fa-user mr-1 fa-fw"></i>生徒: {{$item->name}}</p>
+              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>日:<?= substr($coming_lectures[$i]->date, 5);?></p>
+              <p class="item-text text-white"><i class="far fa-calendar-alt mr-1 fa-fw"></i>時間: <?= substr($coming_lectures[$i]->start_time, 0, 5); ?> - <?= substr($coming_lectures[$i]->end_time, 0, 5)?></p>
+              <p class="item-text text-white"><i class="fas fa-user mr-1 fa-fw"></i>生徒: {{$names[$i]}}</p>
             </div>
           </li>
-        @endforeach
+        @endfor
         @else
 
           <p>授業は予約されていません</p>

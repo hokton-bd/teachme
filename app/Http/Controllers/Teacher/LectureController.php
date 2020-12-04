@@ -58,6 +58,7 @@ class LectureController extends TeacherController
 
         $shifts = Lectures::where('teacher_id', '=', session('teacher_id'))
                             ->where('date', '>=', date('Y-m-d'))
+                            ->where('status', 0)
                             ->orderBy('date', 'ASC')
                             ->orderBy('start_time', 'ASC')
                             ->get();

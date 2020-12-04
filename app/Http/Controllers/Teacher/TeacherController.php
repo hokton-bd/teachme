@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Lectures;
 use App\Common\UserClass;
 use App\Common\SessionClass;
+use App\Common\LectureClass;
 
 class TeacherController extends Controller
 {
@@ -59,8 +60,16 @@ class TeacherController extends Controller
 
         $coming_lectures = $this->getComingLectures();
 
+        $names = [];
+        
+        for($i = 0; $i < $coming_lectures->count(); $i ++) {
+            
+            $names[$i] = LectureClass::getStudentName($coming_lectures[$i]->student_id);
+
+        }
+
         $user = User::find(session('user_id'));
-        return view('teacher.dashboard', compact('coming_lectures', 'user'));
+        return view('teacher.dashboard', compact('coming_lectures', 'user', 'names'));
 
     }
 
