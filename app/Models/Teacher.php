@@ -29,4 +29,10 @@ class Teacher extends Model
 
     }
 
+    public function teacher_subject_teachable() {
+
+        return $this->hasMany('App\Models\Teacher_subject_teachable');
+
+    }
+
 }
