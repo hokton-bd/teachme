@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Models\Lectures;
+use App\Models\Teacher_subject_teachable;
 use App\Common\UserClass;
 use App\Common\SessionClass;
 use App\Common\LectureClass;
@@ -15,14 +16,26 @@ use App\Common\LectureClass;
 class TeacherController extends Controller
 {
     
-    public function store($user_id, $grade, $subject) {
+    public function store($user_id, $grade) {
 
         $teacher = new Teacher;
         $teacher->user_id = $user_id;
         $teacher->grade = $grade;
-        $teacher->subject_id = $subject;
 
         $teacher->save();
+
+    }
+
+    public function storeTeachable($teacher_id, $subjects) {
+
+        foreach($subjects as $subject) {
+            
+            $teachable = new Teacher_subject_teachable;
+            $teachable->teacher_id = $teacher_id;
+            $teachable->subject_id = $subject;
+            $teachable->save();
+
+        }
 
     }
 
@@ -35,9 +48,13 @@ class TeacherController extends Controller
         $user = User::find($user_id);
         $user->role = 9;
         $user->save();
-        $this->store($user_id, $req->grade, $req->subject);
+        $this->store($user_id, $req->grade);
         $teacher_id = User::find($user->id)->teacher()->value('id');
-        session(['user_id' => $user->id, 'role' => $user->role, 'teacher_id' => $teacher_id]);
+
+
+        $this->storeTeachable($teacher_id, $req->subjects);
+
+        session(['user_id' => $user->id, 'role' => $user->role, 'teacher_id' => $teacher_id, 'name' => $user->name]);
 
         return redirect()->route('teacher.dashboard');
         

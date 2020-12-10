@@ -95,7 +95,7 @@
 
     <p>教えられる教科</p>
     @foreach($subjects as $subject)
-      <label for="{{ $subject->id }}"><input type="radio" name="subject" id="{{ $subject->id }}" value="{{ $subject->id }}"> {{ $subject->subject_name }} </label>
+      <label for="{{ $subject->id }}"><input type="checkbox" name="subjects[]" id="{{ $subject->id }}" value="{{ $subject->id }}"> {{ $subject->subject_name }} </label>
     @endforeach
 
     <button type="submit" class="form-control btn btn-primary mx-auto w-25 d-block" name="register-as-teacher">登録</button>
