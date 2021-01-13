@@ -25,7 +25,13 @@
     <p>{{session('message')}}</p>
     @endif
 
-    <ul class="horizontal-list">
+      <select name="subject" id="searchBySubject">
+      @foreach($subjects as $item)
+        <option name="subject" value="{{$item->id}}">{{$item->subject_name}}</option>
+      @endforeach
+      </select>
+
+    <ul id="searchResult" class="horizontal-list">
         
         @for($i = 0; $i < $av_lectures->count(); $i++)
         

@@ -41,6 +41,8 @@ Route::get('student/reserve/paycheck/{id}', 'Student\LecturesController@paycheck
 
 Route::post('student/reserve/charge/{id}', 'Student\LecturesController@reserve')->name('student.charge');
 
+Route::get('student/reserve/{subjectId?}', 'Student\LecturesController@getLecturesBySubjectId');
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

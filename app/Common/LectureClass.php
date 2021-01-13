@@ -35,4 +35,12 @@ class LectureClass
 
     }
 
+    public static function getSubjects() {
+
+        $subjects = Subject::get();
+        
+        return $subjects;
+
+    }
+
 }

@@ -12,6 +12,32 @@ use App\Models\Subject;
 
 class LecturesController extends Controller
 {
+
+    public function getLecturesBySubjectId($subjectId) {
+
+        $av_lectures = Lectures::where('date', '>=', date('Y-m-d'))
+                               ->where('status', 0)
+                               ->where('subject_id', '=', $subjectId)
+                               ->orderBy('date', 'ASC')
+                               ->orderBy('start_time', 'ASC')
+                               ->get();
+           
+        for($i = 0; $i < $av_lectures->count(); $i ++) {
+
+            $teacher_name = LectureClass::getTeacherName($av_lectures[$i]->teacher_id);
+            $subject_name = LectureClass::getSubjectName($av_lectures[$i]->subject_id);
+
+            $data[$i]['teacher_name'] = $teacher_name;
+            $data[$i]['subject_name'] = $subject_name;
+            $data[$i]['meta'] = $av_lectures[$i];
+
+        }
+
+        $subjects = LectureClass::getSubjects();
+        
+        return response()->json($data);
+
+    }
     
     public function getAvailableLectures() {
 
@@ -30,17 +56,14 @@ class LecturesController extends Controller
 
             $tmp2 = ['teacher_name' => $teacher_name, 'subject_name' => $subject_name];
 
-            $names[$i] = $tmp2;    
-            
+            $names[$i] = $tmp2;
         }
 
+        $subjects = LectureClass::getSubjects();
 
-        return view('student.reserve', compact('av_lectures', 'names'));
+        return view('student.reserve', compact('av_lectures', 'names', 'subjects'));
 
     }
-
-
-
 
     public function paycheck($id) {
 
