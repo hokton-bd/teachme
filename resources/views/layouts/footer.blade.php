@@ -2,7 +2,7 @@
     <!-- footer -->
     <footer class="footer_style_2">
     <div class="container-fuild">
-        <p>&copy; Big Dipper <?= date('Y') ;?></p>
+        <p>&copy; LIMI <?= date('Y') ;?></p>
     </div>
     </footer>
     <!-- end footer -->

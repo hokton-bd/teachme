@@ -21,19 +21,25 @@ class LecturesController extends Controller
                                ->orderBy('date', 'ASC')
                                ->orderBy('start_time', 'ASC')
                                ->get();
+
+        if($av_lectures->count() > 0) {
            
-        for($i = 0; $i < $av_lectures->count(); $i ++) {
+            for($i = 0; $i < $av_lectures->count(); $i ++) {
 
-            $teacher_name = LectureClass::getTeacherName($av_lectures[$i]->teacher_id);
-            $subject_name = LectureClass::getSubjectName($av_lectures[$i]->subject_id);
+                $teacher_name = LectureClass::getTeacherName($av_lectures[$i]->teacher_id);
+                $subject_name = LectureClass::getSubjectName($av_lectures[$i]->subject_id);
 
-            $data[$i]['teacher_name'] = $teacher_name;
-            $data[$i]['subject_name'] = $subject_name;
-            $data[$i]['meta'] = $av_lectures[$i];
+                $data[$i]['teacher_name'] = $teacher_name;
+                $data[$i]['subject_name'] = $subject_name;
+                $data[$i]['meta'] = $av_lectures[$i];
+
+            }
+
+        } else {
+
+            $data = [];
 
         }
-
-        $subjects = LectureClass::getSubjects();
         
         return response()->json($data);
 

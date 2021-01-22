@@ -68,6 +68,7 @@
         <option value="5">高校2年生</option>
         <option value="6">高校3年生</option>
     </select>
+    <p><label for="terms-privacy-policy"><input type="checkbox" name="terms-privacy-policy" id="terms-privacy-policy" required><a href="terms-of-service">利用規約</a>及び<a href="privacy-policy">プライバシーポリシー</a>に同意する</label></p>
     <button type="submit" class="form-control btn btn-primary mx-auto w-25 d-block" name="register-as-student">登録</button>
 </form>
 
@@ -98,6 +99,7 @@
       <label for="{{ $subject->id }}"><input type="checkbox" name="subjects[]" id="{{ $subject->id }}" value="{{ $subject->id }}"> {{ $subject->subject_name }} </label>
     @endforeach
 
+    <p><label for="terms-privacy-policy"><input type="checkbox" name="terms-privacy-policy" id="terms-privacy-policy" required><a href="terms-of-service">利用規約</a>及び<a href="privacy-policy">プライバシーポリシー</a>に同意する</label></p>
     <button type="submit" class="form-control btn btn-primary mx-auto w-25 d-block" name="register-as-teacher">登録</button>
 </form>
 

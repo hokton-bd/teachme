@@ -19,7 +19,7 @@
                 <li> <a class="" href="{{route('student.reserve')}}">授業を予約</a></li>
                 <li> <a href="">プロフィール</a></li>
                 <li> <a href="">お問い合わせ</a></li>
-                <li> <a href="{{ route('logout') }}" id="nav-login-btn" class="login-btn bg-primary header-login">ログアウト</a></li>
+                <li> <a href="{{ route('logout') }}" id="nav-login-btn" class="login-btn header-login">ログアウト</a></li>
               </ul>
 
 
@@ -28,7 +28,7 @@
           <!-- menu end -->
         </div><!--/col-lg-9-->
 
-        <a href="{{route('logout')}}" id="iso-login-btn" class="header-login bg-primary login-btn">ログアウト</a>
+        <a href="{{route('student.reserve')}}" id="iso-login-btn" class="header-login bg-primary login-btn">授業を予約</a>
 
       </div><!--/row-->
     </div><!--container-->

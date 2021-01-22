@@ -25,11 +25,14 @@
     <p>{{session('message')}}</p>
     @endif
 
-      <select name="subject" id="searchBySubject">
-      @foreach($subjects as $item)
-        <option name="subject" value="{{$item->id}}">{{$item->subject_name}}</option>
-      @endforeach
-      </select>
+      <div class="search-form">
+        <p>科目名で探す: 
+         <select name="subject" id="searchBySubject">
+        @foreach($subjects as $item)
+          <option name="subject" value="{{$item->id}}">{{$item->subject_name}}</option>
+        @endforeach
+        </select></p>
+      </div>
 
     <ul id="searchResult" class="horizontal-list">
         

@@ -417,7 +417,7 @@ p.large_2 {
 
 .login-btn {
 	display: none;
-	box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+	/* box-shadow: 0 0 15px rgba(0, 0, 0, .3); */
 	cursor: pointer;
 	padding: 15px 18px;
 	font-size: 14px;

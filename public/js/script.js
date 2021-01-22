@@ -8,7 +8,6 @@ $(window).scroll(function() {
 });
 
 
-
 // Basic Code keep it 
 $(document).ready(function () {
     $(document).on("scroll", onScroll);

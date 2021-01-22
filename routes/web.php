@@ -43,6 +43,14 @@ Route::post('student/reserve/charge/{id}', 'Student\LecturesController@reserve')
 
 Route::get('student/reserve/{subjectId?}', 'Student\LecturesController@getLecturesBySubjectId');
 
+Route::get('privacy-policy', function() {
+    return view('privacy-policy');
+});
+
+Route::get('terms-of-service', function() {
+    return view('terms-of-service');
+});
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

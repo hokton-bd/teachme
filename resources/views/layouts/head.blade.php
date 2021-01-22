@@ -15,6 +15,9 @@
     <link rel="icon" href="{{asset('images/fevicon/fevicon.png')}}" type="image/gif" />
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @if('student/paycheck')
+        <script src="https://js.stripe.com/v3/"></script>
+    @endif
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <!-- bootstrap css -->
